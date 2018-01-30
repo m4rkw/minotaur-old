@@ -20,12 +20,14 @@ neoscrypt                   1.58 MH/s           -                 1.69 MH/s     
 nist5                      74.11 MH/s           -                83.48 MH/s             -
 pascal                              -           -                 1.86 GH/s             -
 quark                      33.67 MH/s           -                         -             -
-qubit                               -           -                         -             -
+qubit                      31.78 MH/s           -                         -             -
 scrypt                              -           -                         -             -
 sia                                 -           -                 3.19 GH/s             -
-skunk                               -           -                         -             -
-whirlpoolx                          -           -                         -             -
-x11                                 -           -                         -             -
-x11gost                             -  24.19 MH/s                         -             -
-x13                                 -           -                         -             -
-x15                                 -           -                         -             -
+skunk                                           -                         -             -
+whirlpoolx                                      -                         -             -
+x11                                             -                         -             -
+x11gost                                24.19 MH/s                         -             -
+x13                                             -                         -             -
+x15                                             -                         -             -
+
+note: - means not supported
