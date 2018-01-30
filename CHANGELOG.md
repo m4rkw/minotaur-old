@@ -24,4 +24,7 @@
  - fixed a crash when HUPing after removing an active calibration profile
  - tidied up gs display columns
  - fixed ccminer lyra2rev2 compatibility
+30/01/2018 0.7 - changes:
+- minor bugfix in nicehash library
+- fix for ccminer jobs not being cleaned up on SIGINT when calibrating
 ````
