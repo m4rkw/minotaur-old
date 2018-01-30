@@ -1,4 +1,4 @@
-$ ./minotaur.py --algos
+$ ./minotaur --algos
 
 device class: 1080Ti
 
