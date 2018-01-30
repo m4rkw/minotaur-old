@@ -1,6 +1,6 @@
 # Minotaur, Fanotaur and Excavataur by m4rkw
 
-## Warning
+## WARNING
 
 MINOTAUR SUPPORTS OVERCLOCKING. OVERCLOCKING CAN DAMAGE YOUR HARDWARE IF
 ENABLED. YOU ASSUME ANY AND ALL RISK ASSOCIATED WITH OVERCLOCKING BY THE USE OF
@@ -18,8 +18,10 @@ These three projects are designed to work together:
 ## Overview
 
 Minotaur is a miner management system designed to maximise profit. It has been
-primarily designed to work with Nicehash and the Excavator miner but has support
-for ccminer and support is planned for as many miners as possible.
+primarily designed to work with Nicehash and the Excavator miner but also has
+support for two variants of ccminer and also xmrig-nvidia. Support for these
+miners is enabled via the shim project Excavataur. It is our intention to add
+support for as many miners as possible including CPU miners in the near future.
 
 For now Minotaur is closed-source and donation-supported, as I'd quite like to
 have time to really focus on making it the best miner-management system there
@@ -79,11 +81,6 @@ Invoke it with:
 ./minotaur --gs
 ````
 
-A * prefix in front of an algorithm means it is a calibration run.
-
-![Minotaur](https://a.rkw.io/minotaur.png?t=1)
-
-
 # Compatibility
 
 - Hardware: Nvidia only for now. CPU miner support is planned soon.
@@ -99,6 +96,12 @@ Excavataur.
 
 We can easily add other miners so you are welcome to open github issues with
 requests.
+
+See: https://github.com/m4rkw/minotaur/blob/master/BENCHMARKS.txt
+
+for an idea of how these miners perform with various algorithms. More data
+will be added to this file over time.
+
 
 # Usage
 
@@ -231,6 +234,9 @@ with a HUP which will also reload the config. This means if you start with one
 algorithm and then start calibrating others, Minotaur will pick up the new
 calibrated algorithms more or less as soon as they are available.
 
+A HUP signal also reloads and re-applies the device profiles for active cards so
+you can tweak overclock settings on the fly.
+
 If you want to mine with some cards and calibrate with others you can explicitly
 set cards as ignored in the config file:
 
@@ -264,6 +270,36 @@ It is recommended not to set the power limit in a device profile but rather use
 the power limit obtained via calibration. The power limit set in a device
 profile will override that found via calibration. Profile settings from the
 default profile are inherited by other profiles.
+
+
+## Overclocking notes
+
+If you are going to overclock your card aggressively for mining you probably
+want to consider using device profiles within Minotaur rather than setting the
+clocks externally. The reason for this is that the clocks are an offset from the
+current base clock which varies depending on whether the card is in P0 or P2 mode.
+If you set an aggressive clock boost and start mining the card will enter P2
+mode. As soon as the worker is stopped the card jumps back into P0 mode which
+has higher base clocks and this can trigger a crash.
+
+If you use device profiles within Minotaur, the default profile will always
+be loaded before stopping a worker and a device profile will always be loaded
+*after* the worker has started. This should ensure that you don't run into
+crashes with high overclock settings and state transitions.
+
+Of course you overclock entirely at your own risk and Minotaur cannot guarantee
+that this scenario will not occur via some other means.
+
+Note: because of this issue described above it is an *EXTREMELY BAD IDEA* to put
+clock offsets in the default profile! It is also a very bad idea to use --force 
+when running calibration if the target card is in an aggressively overclocked
+state. If a card is stolen from Minotaur with --force it does not revert it to
+the default profile because this would potentially interfere with the power
+limit control that the calibration process needs. As such before calibrating you
+should:
+
+1) Stop minotaur on the target device
+2) Set the overclock settings (if any) that you want to calibrate with
 
 
 # GS display
@@ -477,6 +513,18 @@ really depends on the thermal situation the card is in. Minotaur can only
 throttle the power down to the minimum power limit of the device.
 
 
-### Credits
+## Donate
 
-@gordan-bobic for enormous amounts of help
+- XMR: 47zb4siDAi691nPW714et9gfgtoHMFnsqh3tKoaW7sKSbNPbv4wBkP11FT7bz5CwSSP1kmVPABNrsMe4Ci1F7Y2qLqT5ozd
+- BTC: 1Bs4mCcyDcDCHfEisJqstEsmV5yzYcenJM
+
+
+## Related projects
+
+- Excavataur - https://github.com/m4rkw/excavataur
+- Fanotaur - https://github.com/m4rkw/fanotaur
+
+
+## Credits
+
+gordan-bobic for enormous amounts of help
