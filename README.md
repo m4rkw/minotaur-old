@@ -134,11 +134,14 @@ Minotaur will look for its config file at the following locations:
 - ~/.minotaur/minotaur.conf
 
 5. Before you can start mining with Minotaur you need to run the calibration
-process for each algorithm/device combination. Currently a device model name is
-treated as a device class (eg 1080ti). In the future we plan to add support for
-device classes within the same model name. You only need to calibrate each
-device class once for each algorithm, so if you have 4 1070s you can distribute
-the calibration across them to get it done quicker.
+process for each algorithm/device combination. By default you can target devices
+based on their model designation (eg "1080Ti") but we also have supported for
+defining device classes within the same model range. This is useful if you have
+cards that are the same model number but from different manufacturers.
+
+You only need to calibrate each device class once for each algorithm, so if you
+have 4 1070s you can distribute the calibration across them to get it done
+quicker.
 
 
 ## Calibration
@@ -255,6 +258,14 @@ Although this mostly works, there is the potential for some race condition
 issues so I would advise using the ignore_devices setting rather than this. The
 benefit of using --force is that if Minotaur is running then the card will be
 immediately returned to mining as soon as the calibration run is complete.
+Although most of the time it works fine, you will occasionally run into race
+condition issues and end up with two mining processes at the same time.
+
+Erraneous workers can be cleaned up with:
+
+````
+./minotaur --cleanup <device_id>
+````
 
 
 # Device profiles
@@ -263,6 +274,10 @@ Minotaur allows you to configure device profiles that are assigned to a device
 class, an algorithm or a combination of the two. Currently device profiles allow
 you to specify a power limit, gpu clock offset and memory clock offset.
 
+Minotaur will look for a specific profile (where device and algorithm both
+match) before looking for more generic profiles where say the device matches but
+the algorithm is "all".
+
 In order to change the clocks you will also need to explicitly disable the
 "leave_graphics_clocks_alone" setting.
 
@@ -270,6 +285,27 @@ It is recommended not to set the power limit in a device profile but rather use
 the power limit obtained via calibration. The power limit set in a device
 profile will override that found via calibration. Profile settings from the
 default profile are inherited by other profiles.
+
+
+# Device classes
+
+If you have several cards of the same model number but from different
+manufacturers you can define custom device classes to group them separately and
+thus apply device profiles to groups of them.
+
+Here's an example of this in minotaur.conf:
+
+````
+device_classes:
+  "1080ti_asus":
+    - 0
+    - 1
+  "1080ti_evga":
+    - 2
+    - 3
+````
+
+The numbers are the GPU ids returned by nvidia-smi.
 
 
 ## Overclocking notes
@@ -287,19 +323,13 @@ be loaded before stopping a worker and a device profile will always be loaded
 *after* the worker has started. This should ensure that you don't run into
 crashes with high overclock settings and state transitions.
 
+Note: if you set GPU or memory clock offsets in the default profile they will be
+ignored and unless you have explicitly enabled the "leave_graphics_clocks_alone"
+option, clock offsets will be set to 0 whenever the default profile is loaded.
+This is a safety mechanism to avoid crashes during P0/P2 state transitions.
+
 Of course you overclock entirely at your own risk and Minotaur cannot guarantee
 that this scenario will not occur via some other means.
-
-Note: because of this issue described above it is an *EXTREMELY BAD IDEA* to put
-clock offsets in the default profile! It is also a very bad idea to use --force 
-when running calibration if the target card is in an aggressively overclocked
-state. If a card is stolen from Minotaur with --force it does not revert it to
-the default profile because this would potentially interfere with the power
-limit control that the calibration process needs. As such before calibrating you
-should:
-
-1) Stop minotaur on the target device
-2) Set the overclock settings (if any) that you want to calibrate with
 
 
 # GS display

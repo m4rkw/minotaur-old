@@ -10,4 +10,18 @@
  - ensure default profile is always loaded before stopping workers
  - don't crash if the miner backends all go away
  - apply reloaded profile settings for active devices on HUP
+30/01/2018 0.5 - minor fixes
+30/01/2018 0.6 - changes:
+ - support for custom device classes
+ - support for overclocking in calibration runs
+ - ignore GPU/memory clock offsets in the default profile
+ - bugfix: SIGHUP crashes gs
+ - bugfix: fixed some gs display artefacts
+ - added option to clean up workers for a specific device
+ - bugfix: fixed setting of power limit during calibration
+ - if calibrating without power tuning enabled, store the default power limit
+   rather than the maximum observed power draw
+ - fixed a crash when HUPing after removing an active calibration profile
+ - tidied up gs display columns
+ - fixed ccminer lyra2rev2 compatibility
 ````
