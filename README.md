@@ -474,4 +474,4 @@ throttle the power down to the minimum power limit of the device.
 
 ### Credits
 
-gordan-bobic for enormous amounts of help
+@gordan-bobic for enormous amounts of help
