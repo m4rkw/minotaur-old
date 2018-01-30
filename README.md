@@ -79,6 +79,9 @@ Invoke it with:
 ./minotaur --gs
 ````
 
+![Minotaur](https://a.rkw.io/minotaur.png)
+
+
 # Compatibility
 
 - Hardware: Nvidia only for now. CPU miner support is planned soon.
