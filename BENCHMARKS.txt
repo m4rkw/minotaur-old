@@ -4,7 +4,7 @@ device class: 1080Ti
 
                               ccminer    ccminer2                 excavator  xmrig_nvidia
 -------------------------------------------------------------------------------------------------
-blake256r8                          -           -                         -             -
+blake256r8                  8.31 GH/s           -                         -             -
 blake2s                     7.27 GH/s           -                 7.40 GH/s             -
 cryptonight                899.52 H/s           -                367.36 H/s    896.70 H/s
 daggerhashimoto                     -           -                35.91 MH/s             -
@@ -19,7 +19,7 @@ lyra2rev2                           -           -                69.78 MH/s     
 neoscrypt                   1.58 MH/s           -                 1.69 MH/s             -
 nist5                      74.11 MH/s           -                83.48 MH/s             -
 pascal                              -           -                 1.86 GH/s             -
-quark                               -           -                         -             -
+quark                      33.67 MH/s           -                         -             -
 qubit                               -           -                         -             -
 scrypt                              -           -                         -             -
 sia                                 -           -                 3.19 GH/s             -
