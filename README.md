@@ -25,6 +25,7 @@ For now Minotaur is closed-source and donation-supported, as I'd quite like to
 have time to really focus on making it the best miner-management system there
 is. The default donation is 5% (5 minutes in 100 minutes) and can be changed in
 the config file using the "donation_level" setting with a minimum of 1%.
+No donation occurs during calibration runs.
 
 Depending on how the project develops I may consider open-sourcing it at some
 point but for now I think a small donation tier is a good way to give me the
