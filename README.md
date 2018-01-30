@@ -79,6 +79,8 @@ Invoke it with:
 ./minotaur --gs
 ````
 
+A * prefix in front of an algorithm means it is a calibration run.
+
 ![Minotaur](https://a.rkw.io/minotaur.png?t=1)
 
 
