@@ -82,7 +82,15 @@ Invoke it with:
 # Compatibility
 
 - Hardware: Nvidia only for now. CPU miner support is planned soon.
-- Miners: excavator, xmrig-nvidia, ccminer (tpruvot), ccminer2 (alexis78)
+- Miners:
+
+- Excavator - https://github.com/nicehash/excavator
+- xmrig-nvidia - https://github.com/xmrig/xmrig-nvidia
+- ccminer (tpruvot) - https://github.com/tpruvot/ccminer.git
+- ccminer2 (alexis78) - https://github.com/alexis78/ccminer.git
+
+Note: "ccminer2" is just the name of the alexis78 fork within Minotaur and
+Excavataur.
 
 We can easily add other miners so you are welcome to open github issues with
 requests.
@@ -127,8 +135,16 @@ the calibration across them to get it done quicker.
 
 ## Calibration
 
+To see the calibration options:
+
 ````
 $ ./minotaur --calibrate
+````
+
+Calibrate all excavator algorithms in eu region on device 0:
+
+````
+$ ./minotaur --calibrate 0 excavator all eu
 ````
 
 Device classes are shortened, so for example "Geforce GTX 1070 Ti" becomes
@@ -190,6 +206,8 @@ calibration:
     sample_time_mins: 5
 ````
 
+Calibration runs are logged to /var/log/minotaur/calibration_{device_id}.log.
+
 If you're just interested in getting up and running as fast as possible you can
 specify --quick when calibrating to skip the power calibration phase and
 optionally you can also set the warm-up cycle to 0 in the config which will
@@ -198,7 +216,7 @@ disable it.
 
 # Mining
 
-Once you have some calibration data for at least one algoeithm you can start
+Once you have some calibration data for at least one algorithm you can start
 mining. Simply run minotaur and it will talk to the Nicehash API and mine the
 most profitable algorithms based on the current market rates and your calibrated
 hashrates.
@@ -211,7 +229,9 @@ calibrated algorithms more or less as soon as they are available.
 If you want to mine with some cards and calibrate with others you can explicitly
 set cards as ignored in the config file:
 
+````
 ignore_devices: [0,1]
+````
 
 This will ignore GPUs 0 and 1 when running with --mine but you can still target
 them with --calibrate. A another way is using the --force parameter to with
@@ -377,6 +397,7 @@ https://github.com/m4rkw/excavataur
 ````
 logging:
   log_file: /var/log/minotaur/minotaur.log
+  calibration_log_dir: /var/log/minotaur
   max_size_mb: 100
   log_file_count: 7
 ````
@@ -438,6 +459,17 @@ ignore_devices: [0,1,3]
 
 Minotaur will ignore these GPU ids when running with --mine. You can also specify
 device classes here
+
+````
+regulate_card_temperatures: true
+card_temperature_limit: 80
+````
+
+If missing or set to true Minotaur will throttle the power limit in order to try
+to keep the card at the limit temperature. This only occurs during mining, NOT
+during calibration. Also there is no guarantee that it will succeed because it
+really depends on the thermal situation the card is in. Minotaur can only
+throttle the power down to the minimum power limit of the device.
 
 
 ### Credits
