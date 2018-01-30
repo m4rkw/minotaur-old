@@ -7,6 +7,14 @@ ENABLED. YOU ASSUME ANY AND ALL RISK ASSOCIATED WITH OVERCLOCKING BY THE USE OF
 THIS SOFTWARE. WE ARE NOT RESPONSIBLE FOR ANY DAMAGE THAT MAY ARISE FROM THE USE
 OF THIS SOFTWARE. SEE THE LICENSE TERMS FOR MORE INFORMATION.
 
+## Projects
+
+These three projects are designed to work together:
+
+- Minotaur - this one you're looking at :)
+- Fanotaur - https://github.com/m4rkw/fanotaur
+- Excavataur - https://github.com/m4rkw/excavataur
+
 ## Overview
 
 Minotaur is a miner management system designed to maximise profit. It has been
