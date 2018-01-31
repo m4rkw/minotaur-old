@@ -35,4 +35,9 @@
 - fixed an issue that can cause a crash under certain conditions
 31/01/2018 0.7.3 - changes:
 - bugfix: --cleanup not stopping workers
+31/01/2018 0.7.4 - changes:
+- show separate mBTC rates when running dual algos
+- minor fixes and improvements
+- fixed power throttling
+- fixed margin display under low hashrate conditions
 ````
