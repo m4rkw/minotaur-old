@@ -27,4 +27,8 @@
 30/01/2018 0.7 - changes:
 - minor bugfix in nicehash library
 - fix for ccminer jobs not being cleaned up on SIGINT when calibrating
+31/01/2018 0.7.1 - changes:
+- fixed minor gs rendering bug
+- fixed crash when running blended algorithms
+- enabled scrypt, sia, x11 and x13 in ccminer
 ````
