@@ -40,4 +40,7 @@
 - minor fixes and improvements
 - fixed power throttling
 - fixed margin display under low hashrate conditions
+31/01/2018 0.7.5 - changes:
+- added support for device pinning
+- fixed minotaur not stopping workers on SIGINT
 ````

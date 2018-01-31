@@ -332,6 +332,12 @@ Of course you overclock entirely at your own risk and Minotaur cannot guarantee
 that this scenario will not occur via some other means.
 
 
+# Device pinning
+
+You can now pin a device to a specific miner/algorithm/region combination for
+testing. See --help for syntax.
+
+
 # GS display
 
 Minotaur comes with a top-style monitoring interface which provides metrics on
