@@ -31,4 +31,6 @@
 - fixed minor gs rendering bug
 - fixed crash when running blended algorithms
 - enabled scrypt, sia, x11 and x13 in ccminer
+31/01/2018 0.7.2 - changes:
+- fixed an issue that can cause a crash under certain conditions
 ````
