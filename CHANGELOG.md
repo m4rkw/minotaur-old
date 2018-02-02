@@ -52,4 +52,8 @@
 - various stability fixes
 - sensible config defaults
 - added more flexible calibration parameters
+02/02/2018 0.8.6 - changes:
+- fixed an edge-case crash
+- added quickstart mode
+- added turbo calibration
 ````

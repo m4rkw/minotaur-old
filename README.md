@@ -33,7 +33,34 @@ Depending on how the project develops I may consider open-sourcing it at some
 point but for now I think a small donation tier is a good way to give me the
 time to work on it.
 
-Minotaur does four important things:
+## Quickstart
+
+If you don't want to read all this documentation and just want to get mining as
+fast as possible you can use quickstart mode:
+
+````
+$ ./minotaur --quickstart
+````
+
+Quickstart mode will run the calibration process for the 5 most profitable GPU
+algorithms on Nicehash (currently equihash, nist5, neoscrypt, keccak, lyra2rev2)
+using default config on all of your device classes (by default a device class is
+the same as a model name, eg "1070ti". This calibration only needs to happen
+once - once they have been calibrated across all of your device classes next
+time you can just run:
+
+````
+$ ./minotaur --mine
+````
+
+Note that you may want to edit some parameters in the default config before
+running quickstart mode. You will need at least one miner configured for this
+to work. Excavator is configured by default so as long as you have excavator
+running on the default port (3456) this should work.
+
+You may get more benefit out of running full power calibration as described
+below but if you're keen to get up and running quickly you can do this one
+device at a time while the others mine.
 
 ## Power calibration
 
@@ -200,11 +227,21 @@ calibration:
   initial_warmup_time_mins: 5
 ````
 
-2. Initial 10-minute run to establish a baseline hashrate
+2. Initial run to establish a baseline hashrate.
 
 config:
 
 ````
+calibration:
+  hashrate_stabilisation_timeout_mins: 5
+  hashrate_stabilisation_tolerance: 1
+  algorithm_start_timeout: 180
+````
+
+It will run until the hashrate is stable - 5 consecutive readings within 1%
+of eachother. You can adjust the tolerance using the parameters above. You can
+use fractional values for the tolerance value, eg 0.5.
+
 calibration:
   initial_sample_time_mins: 10
 ````
@@ -227,14 +264,10 @@ Relevant config params:
 
 ````
 calibration:
-  initial_warmup_time_mins: 5
-  initial_sample_time_mins: 10
-  acceptable_loss_percent: 1
-  algorithm_start_timeout: 180
   power_tuning:
     enable: true
     decrement_watts: 10
-    sample_time_mins: 5
+    acceptable_loss_percent: 1
 ````
 
 Calibration runs are logged to /var/log/minotaur/calibration_{device_id}.log.
