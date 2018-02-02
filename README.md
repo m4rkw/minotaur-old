@@ -81,6 +81,8 @@ Invoke it with:
 ./minotaur --gs
 ````
 
+![minotaur](https://a.rkw.io/minotaur.png?t=1)
+
 # Compatibility
 
 - Hardware: Nvidia only for now. CPU miner support is planned soon.
@@ -156,6 +158,24 @@ Calibrate all excavator algorithms in eu region on device 0:
 
 ````
 $ ./minotaur --calibrate 0 excavator all eu
+````
+
+Calibrate all excavator algorithms in eu region on all device classes:
+
+````
+$ ./minotaur --calibrate all excavator all eu
+````
+
+Calibrate nist5, neoscrypt and equihash:
+
+````
+$ ./minotaur --calibrate 0 excavator nist5,neoscrypt,equihash eu
+````
+
+Calibrate all excavator algorithms in eu region except for nist5:
+
+````
+$ ./minotaur --calibrate 0 excavator all,\!nist5 eu
 ````
 
 Device classes are shortened, so for example "Geforce GTX 1070 Ti" becomes

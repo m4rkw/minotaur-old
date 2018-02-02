@@ -48,4 +48,8 @@
 - resolved some edge-cases
 - fixed crash when theres no calibration data
 - dont touch the power limit when calibrating in quick mode
+02/02/2018 0.8.5 - changes:
+- various stability fixes
+- sensible config defaults
+- added more flexible calibration parameters
 ````
