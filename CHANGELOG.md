@@ -56,4 +56,5 @@
 - fixed an edge-case crash
 - added quickstart mode
 - added turbo calibration
+02/02/2018 0.8.7 - fixed setting of power limits
 ````
