@@ -43,4 +43,9 @@
 31/01/2018 0.7.5 - changes:
 - added support for device pinning
 - fixed minotaur not stopping workers on SIGINT
+01/02/2018 0.8.4 - changes:
+- rewrote a lot of the core code to make it cleaner, faster and more stable
+- resolved some edge-cases
+- fixed crash when theres no calibration data
+- dont touch the power limit when calibrating in quick mode
 ````
