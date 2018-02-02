@@ -57,4 +57,7 @@
 - added quickstart mode
 - added turbo calibration
 02/02/2018 0.8.7 - fixed setting of power limits
+02/02/2018 0.8.8 - changes:
+- indicate when nicehash is down
+- default to equihash in eu when nicehash is down
 ````
