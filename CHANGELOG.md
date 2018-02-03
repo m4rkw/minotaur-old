@@ -67,4 +67,9 @@
 02/02/2018 0.8.9.1 - changes:
 - misc bugfixes
 - fixed calibration algorithm
+03/02/2018 0.8.10 - changes:
+- fixed clocks display on 780ti
+- detect conflicting calibration runs
+- fixed gs display when nicehash is down
+- check for updates on startup
 ````
