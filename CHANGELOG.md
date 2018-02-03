@@ -60,4 +60,11 @@
 02/02/2018 0.8.8 - changes:
 - indicate when nicehash is down
 - default to equihash in eu when nicehash is down
+02/02/2018 0.8.9 - changes:
+- use threading and queues to execute algo switches much faster
+- added default algorthm to nicehash config for when the API is unavailable
+- added workarounds for older cards that don't support setting a power limit
+02/02/2018 0.8.9.1 - changes:
+- misc bugfixes
+- fixed calibration algorithm
 ````
