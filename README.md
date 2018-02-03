@@ -242,6 +242,7 @@ It will run until the hashrate is stable - 5 consecutive readings within 1%
 of eachother. You can adjust the tolerance using the parameters above. You can
 use fractional values for the tolerance value, eg 0.5.
 
+````
 calibration:
   initial_sample_time_mins: 10
 ````
