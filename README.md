@@ -15,13 +15,22 @@ These three projects are designed to work together:
 - Fanotaur - https://github.com/m4rkw/fanotaur
 - Excavataur - https://github.com/m4rkw/excavataur
 
+## Updates
+
+- 06/02/2018 - Minotaur v0.9 now supports ethereum pool mining via
+ethermine.org! You'll need the latest version of Excavataur for this to work.
+
 ## Overview
 
 Minotaur is a miner management system designed to maximise profit. It has been
 primarily designed to work with Nicehash and the Excavator miner but also has
-support for two variants of ccminer and also xmrig-nvidia. Support for these
-miners is enabled via the shim project Excavataur. It is our intention to add
-support for as many miners as possible including CPU miners in the near future.
+support for two variants of ccminer, xmrig-nvidia and ethminer. Support for
+these miners is enabled via the shim project Excavataur. It is our intention
+to add support for as many miners as possible including CPU miners in the near
+future.  
+
+As of 0.9 we also have support for mining ethereum directly using the ethermine
+pool.
 
 For now Minotaur is closed-source and donation-supported, as I'd quite like to
 have time to really focus on making it the best miner-management system there
@@ -119,6 +128,7 @@ Invoke it with:
 - xmrig-nvidia - https://github.com/xmrig/xmrig-nvidia
 - ccminer (tpruvot) - https://github.com/tpruvot/ccminer.git
 - ccminer2 (alexis78) - https://github.com/alexis78/ccminer.git
+- ethminer - https://github.com/ethereum-mining/ethminer
 
 Note: "ccminer2" is just the name of the alexis78 fork within Minotaur and
 Excavataur.

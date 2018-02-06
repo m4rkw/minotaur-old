@@ -73,4 +73,10 @@
 - fixed gs display when nicehash is down
 - check for updates on startup
 05/02/2018 0.8.11 - fix for ubuntu 16.04
+05/02/2018 0.9 - changes:
+- ethermine and ethminer support for ethereum mining
+- fixed calculation of power costs
+- various bugfixes and improvements
+- start new algorithm worker before stopping the old one
+- gs now shows all algos running on a device
 ````
