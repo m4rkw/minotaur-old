@@ -79,4 +79,5 @@
 - various bugfixes and improvements
 - start new algorithm worker before stopping the old one
 - gs now shows all algos running on a device
+07/02/2018 0.9.1 - various minor bugfixes
 ````
