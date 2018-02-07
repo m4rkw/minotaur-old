@@ -84,4 +84,5 @@
 07/02/2018 0.9.3 - minor bugfix
 07/02/2018 0.9.4 - minor bugfix
 07/02/2018 0.9.5 - bugfix for gs crash
+07/02/2018 0.9.6 - bugfix for occasional gs crash
 ````
