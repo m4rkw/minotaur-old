@@ -82,4 +82,6 @@
 07/02/2018 0.9.1 - various minor bugfixes
 07/02/2018 0.9.2 - calibration crash fix
 07/02/2018 0.9.3 - minor bugfix
+07/02/2018 0.9.4 - minor bugfix
+07/02/2018 0.9.5 - bugfix for gs crash
 ````
