@@ -20,6 +20,17 @@ These three projects are designed to work together:
 - 06/02/2018 - Minotaur v0.9 now supports ethereum pool mining via
 ethermine.org! You'll need the latest version of Excavataur for this to work.
 
+- 11/02/2018 - Minotaur v0.9.8.6 now supports ZEC pool mining via flypool!
+
+## Support channel
+
+Join us in #minotaur on the freenode network - https://freenode.net
+
+````
+/server irc.freenode.net
+/join #minotaur
+````
+
 ## Overview
 
 Minotaur is a miner management system designed to maximise profit. It has been
