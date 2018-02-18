@@ -149,4 +149,5 @@
 - added support for nicehash pool fee in profit calculation
 - added support for miningpoolhub
 18/02/2018 1.0.1 - minor bugfix
+18/02/2018 1.0.2 - added support for overriding max power limit in config
 ````
