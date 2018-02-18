@@ -85,4 +85,67 @@
 07/02/2018 0.9.4 - minor bugfix
 07/02/2018 0.9.5 - bugfix for gs crash
 07/02/2018 0.9.6 - bugfix for occasional gs crash
+07/02/2018 0.9.7 - changes:
+- fixed total power calculation when more than one algo is running
+- fixed crashes when running dual algos
+08/02/2018 0.9.8 - changes:
+- support for dynamic calibration updates
+- added CSV stats collection
+- basic profitability summary report
+08/02/2018 0.9.8.1 - changes:
+- bugfix for failure to reset device clocks on --cleanup
+08/02/2018 0.9.8.2 - changes:
+- fixed a bug with device pinning
+08/02/2018 0.9.8.3 - changes:
+- fixed a bug with device pinning
+09/02/2018 0.9.8.4 - stats bugfix
+10/02/2018 0.9.8.5 - changes:
+- handle SIGTERM and cleanup workers
+- fixed gs display with more than 3 avg time periods
+- made gs exit cleanly on ctrl-c
+- fixed HUP not un-ignoring devices
+11/02/2018 0.9.8.6 - changes
+- dont exit if we fail to get a stable hashrate reading - skip to the next algo
+- added support for ZEC pool mining via flypool
+11/02/2018 0.9.8.7 - bugfix for zec pool mining
+11/02/2018 0.9.8.8 - added configurable pool fees
+12/02/2018 0.9.8.9 - changes:
+- exit gracefully if a worker is stopped externally during calibration
+- added a temporary 35% offset to balance ZEC profitability
+12/02/2018 0.9.8.10 - removed ZEC offset
+12/02/2018 0.9.8.11 - minor bugfix
+12/02/2018 0.9.8.12 - changes:
+- added debug statements
+12/02/2018 0.9.8.13 - changes:
+- fix for calibrating with disabled miners
+12/02/2018 0.9.8.14 - changes:
+- fix for crash on startup when miners are running on a disabled pool
+12/02/2018 0.9.8.15 - added some extra debug routines
+13/02/2018 0.9.8.16 - changes:
+- fixed ZEC block reward in example config
+- use whattomine.com for profitability data
+13/02/2018 0.9.9 - added monero ocean pool support
+13/02/2018 0.9.9.1 - fixed stats bug
+13/02/2018 0.9.9.2 changes:
+- optimised gs display
+- added self-upgrade feature
+13/02/2018 0.9.9.3 - changes:
+- added mobile display mode for gs
+13/02/2018 0.9.9.4 - bugfix
+14/02/2018 0.9.9.5 - various bugfixes related to devices that don't support power control
+14/02/2018 0.9.9.6 - ewbf support (requires a shim)
+14/02/2018 0.9.9.7 - various minor bugfixes
+15/02/2018 0.9.9.8 - various minor bugfixes
+15/02/2018 1.0 - changes:
+- fanotaur is now gpustatd
+- gpustatd does all the nvidia device polling
+- power regulation is now done in gpustatd
+- added support for custom excavator params
+- option to set max power limit when starting/switching algo
+- if not using max power when switching the higher limit of the two algos will be set
+- removed power limits from device profiles
+- added support for zclmine.pro for ZCL mining
+- added config param for system draw
+- added support for nicehash pool fee in profit calculation
+- added support for miningpoolhub
 ````

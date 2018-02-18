@@ -1,4 +1,4 @@
-# Minotaur, Fanotaur and Excavataur by m4rkw
+# Minotaur, gpustatd and Excavataur by m4rkw
 
 ## WARNING
 
@@ -7,20 +7,31 @@ ENABLED. YOU ASSUME ANY AND ALL RISK ASSOCIATED WITH OVERCLOCKING BY THE USE OF
 THIS SOFTWARE. WE ARE NOT RESPONSIBLE FOR ANY DAMAGE THAT MAY ARISE FROM THE USE
 OF THIS SOFTWARE. SEE THE LICENSE TERMS FOR MORE INFORMATION.
 
+
 ## Projects
 
 These three projects are designed to work together:
 
+- gpustatd - https://github.com/m4rkw/gpustatd
 - Minotaur - this one you're looking at :)
-- Fanotaur - https://github.com/m4rkw/fanotaur
 - Excavataur - https://github.com/m4rkw/excavataur
+
 
 ## Updates
 
 - 06/02/2018 - Minotaur v0.9 now supports ethereum pool mining via
 ethermine.org! You'll need the latest version of Excavataur for this to work.
 
-- 11/02/2018 - Minotaur v0.9.8.6 now supports ZEC pool mining via flypool!
+- 11/02/2018 - Minotaur v0.9.8.6 now supports ZEC pool mining via flypool.
+
+- 13/02/2018 - Minotaur v0.9.9 now supports XMR pool mining via Monero Ocean.
+
+- 15/02/2018 - As of Minotaur v0.9.9.8 fanotaur is now gpustatd.
+
+- 18/02/2018 - New features in Minotaur 1.0:
+
+- Added support for zclmine.pro and miningpoolhub
+
 
 ## Support channel
 
@@ -35,17 +46,23 @@ Join us in #minotaur on the freenode network - https://freenode.net
 
 Minotaur is a miner management system designed to maximise profit. It has been
 primarily designed to work with Nicehash and the Excavator miner but also has
-support for two variants of ccminer, xmrig-nvidia and ethminer. Support for
+support for two variants of ccminer, xmrig-nvidia, ethminer and ewbf. Support for
 these miners is enabled via the shim project Excavataur. It is our intention
 to add support for as many miners as possible including CPU miners in the near
 future.  
 
-As of 0.9 we also have support for mining ethereum directly using the ethermine
-pool.
+Pools supported:
+
+- nicehash
+- ethermine (ethereum only)
+- flypool (ZEC only)
+- monero ocean (XMR only)
+- zclmine.pro (zclassic)
+- miningpoolhub
 
 For now Minotaur is closed-source and donation-supported, as I'd quite like to
 have time to really focus on making it the best miner-management system there
-is. The default donation is 5% (5 minutes in 100 minutes) and can be changed in
+is. The default donation is 2% (2 minutes in 100 minutes) and can be changed in
 the config file using the "donation_level" setting with a minimum of 1%.
 No donation occurs during calibration runs.
 
@@ -111,10 +128,12 @@ power cost. Currently it checks the Nicehash API every 15 seconds.
 Minotaur lets you create profiles that target either a device, an algorithm or a
 device/algorithm combination. In these profiles you can set:
 
-- power limit (although its best to use the calibration data and not explicitly
-set this)
 - gpu clock offset
 - memory clock offset
+
+Note: as of version 1.0 we no longer support configuring a power limit in the
+device profiles. Power limits are solely derived from the calibration files in
+~/.minotaur/ however you can edit these manually as you wish.
 
 We do not endorse or recommend overclocking - do so at your own risk!
 
@@ -140,6 +159,7 @@ Invoke it with:
 - ccminer (tpruvot) - https://github.com/tpruvot/ccminer.git
 - ccminer2 (alexis78) - https://github.com/alexis78/ccminer.git
 - ethminer - https://github.com/ethereum-mining/ethminer
+- ewbf - https://github.com/nanopool/ewbf-miner
 
 Note: "ccminer2" is just the name of the alexis78 fork within Minotaur and
 Excavataur.
@@ -158,9 +178,9 @@ will be added to this file over time.
 1. Set up a Xorg display such that you can use nvidia-settings. Make sure the
 user you will run Minotaur as is able to use it and change card settings.
 
-2. (Highly recommend but optional) - install and configure Fanotaur:
+2. Install and configure gpustatd
 
-https://github.com/m4rkw/fanotaur
+https://github.com/m4rkw/gpustatd
 
 This will control your GPU fans independently of Minotaur in order to keep
 temperatures under control. Minotaur does not ever touch fan speeds, but by
@@ -205,25 +225,25 @@ $ ./minotaur --calibrate
 Calibrate all excavator algorithms in eu region on device 0:
 
 ````
-$ ./minotaur --calibrate 0 excavator all eu
+$ ./minotaur --calibrate 0 nicehash excavator all eu
 ````
 
 Calibrate all excavator algorithms in eu region on all device classes:
 
 ````
-$ ./minotaur --calibrate all excavator all eu
+$ ./minotaur --calibrate all nicehash excavator all eu
 ````
 
 Calibrate nist5, neoscrypt and equihash:
 
 ````
-$ ./minotaur --calibrate 0 excavator nist5,neoscrypt,equihash eu
+$ ./minotaur --calibrate 0 nicehash excavator nist5,neoscrypt,equihash eu
 ````
 
 Calibrate all excavator algorithms in eu region except for nist5:
 
 ````
-$ ./minotaur --calibrate 0 excavator all,\!nist5 eu
+$ ./minotaur --calibrate 0 nicehash excavator all,\!nist5 eu
 ````
 
 Device classes are shortened, so for example "Geforce GTX 1070 Ti" becomes
@@ -239,23 +259,14 @@ Calibration files are stored in simple plaintext YAML in ~/.minotaur/.
 
 The full calibration process is:
 
-1. Initial warmup to get the card up to operating temperature
-
-config:
-
-````
-calibration:
-  initial_warmup_time_mins: 5
-````
-
 2. Initial run to establish a baseline hashrate.
 
 config:
 
 ````
 calibration:
-  hashrate_stabilisation_timeout_mins: 5
-  hashrate_stabilisation_tolerance: 1
+  hashrate_stabilisation_timeout_mins: 10
+  hashrate_stabilisation_tolerance: 0.5
   algorithm_start_timeout: 180
 ````
 
@@ -268,17 +279,17 @@ calibration:
   initial_sample_time_mins: 10
 ````
 
-3. If power tuning is enabled Minotaur will then attempt to determine the lowest
+2. If power tuning is enabled Minotaur will then attempt to determine the lowest
 power limit that we can run the algorithm with without losing more than our
 acceptable hashrate %. The first step is to decrease the power limit to the
 level observed at the max power draw in step 2.
 
-4. If the rate doesn't fall by more than the configured loss % then it will keep
+3. If the rate doesn't fall by more than the configured loss % then it will keep
 going in 10W decrements until the rate falls by more than 1% (or whatever you've
 set it to). When this happens it will try dialling back 5W to see if that
 mitigates the loss.
 
-5. This process is repeated in 5-min runs until the optimum power limit is
+4. This process is repeated in 5-min runs until the optimum power limit is
 found. In testing we frequently found that hashrates would sometimes go *up*
 rather than down when the power limit was lowered.
 
@@ -290,6 +301,25 @@ calibration:
     enable: true
     decrement_watts: 10
     acceptable_loss_percent: 1
+````
+
+Note that acceptable_loss_percent should be at least 2x the setting for
+hashrate_stabilisation_tolerance otherwise you're just measuring noise.
+
+As of 0.9.8 Minotaur can now update the calibration data over time with data
+from normal mining runs. This is useful if the conditions of your system change
+over time. There is a fixed period of update_calibration_data_after_mins
+minutes that an algorithm must run for before it will be considered for an
+update and the hashrate must be within the configure percentage limit (see
+below). The rate must also be considered stable so the variance must be within
+the percentage defined in the hashrate_stabilisation_tolerance setting for a
+number of readings equal to your
+hashrate_stabilisation_consecutive_readings_required setting.
+
+````
+  update_calibration_data_over_time: true
+  calibration_update_threshold_min_pc: 3
+  calibration_update_threshold_max_pc: 10
 ````
 
 Calibration runs are logged to /var/log/minotaur/calibration_{device_id}.log.
@@ -341,6 +371,19 @@ Erraneous workers can be cleaned up with:
 ````
 ./minotaur --cleanup <device_id>
 ````
+
+# Mining pool hub
+
+This pool is slightly different in that you need to configure the hub workers
+yourself in your miningpoolhub account before they will authenticate. Create one
+for each auto-switching algorithm you want to mine. We currently only support
+cryptonight, equihash, daggerhashimoto (ethhash), lyra2rev2, neoscrypt and keccak.
+Once you've configured the workers in your miningpoolhub account (make sure they
+all have the password 'x') you can configure the worker names in minotaur.conf.
+See the example config file for an example of how to do this.
+
+If you want to be able to calibrate using this pool you will also need to create
+duplicate hub workers with "CALIB" appended to the worker name.
 
 
 # Device profiles
@@ -413,6 +456,15 @@ You can now pin a device to a specific miner/algorithm/region combination for
 testing. See --help for syntax.
 
 
+# Self-upgrade
+
+You can upgrade to the latest release with:
+
+````
+minotaur --upgrade
+````
+
+
 # GS display
 
 Minotaur comes with a top-style monitoring interface which provides metrics on
@@ -436,6 +488,49 @@ live_data:
     - 900
 electricity_per_kwh: 0.1194
 electricity_currency: GBP
+system_draw_watts: 200
+````
+
+system_draw_watts is the wattage used by the rest of the system, eg other than GPUs.
+Setting this allows for more accurate profit calculation.
+
+
+# Stat collection
+
+By default Minotaur will collect stats in CSV format in /var/log/minotaur/.
+There is currently one simple report that you can execute:
+
+````
+$ ./minotaur.py --stats
+
+stats for the last 24 hours:
+
+ from: 2018-02-08 13:10:13
+   to: 2018-02-08 21:44:42
+
+total: 0.44 mBTC
+  GBP: 2.65
+
+ rate: 1.24 mBTC/day
+  GBP: 7.42/day
+  GBP: 222.58/month
+
+income by algorithm:
+
+       equihash: 0.1937 mBTC  1.16 GBP
+        x11gost: 0.1027 mBTC  0.62 GBP
+daggerhashimoto: 0.0650 mBTC  0.39 GBP
+         keccak: 0.0280 mBTC  0.17 GBP
+      neoscrypt: 0.0278 mBTC  0.17 GBP
+      lyra2rev2: 0.0238 mBTC  0.14 GBP
+          nist5: 0.0010 mBTC  0.01 GBP
+````
+
+You can also pass a number after --stats to see a report for a different number of
+preceding hours, eg to see the last hour:
+
+````
+./minotaur.py --stats 1
 ````
 
 
@@ -490,10 +585,26 @@ The profit gain potential in % required before we will switch to a different
 algorithm. A value of 0.04 means 4%.
 
 ````
+use_max_power_limit_when_switching: true
+````
+
+If enabled the maximum power limit will be set before starting/switching algorithm.
+This is useful to avoid throttling when two algorithms are loaded during the
+switchover process and to ensure that the new algorithm can return a hashrate as
+quickly as possible. If this setting is not enabled then the higher of the two
+power limits associated with the algorithms will be set before the switchover.
+
+````
 nicehash.ports
 ````
 
 Configured list of ports for Nicehash statrum endpoints.
+
+````
+nicehash.pool_fee
+````
+
+The nicehash pool fee - in most cases this will be 2%.
 
 ````
 algorithms:
@@ -512,12 +623,6 @@ hashrate_alert_threshold_percent: 3
 
 Warn if the observed hashrate for an algorithm is 3% lower than the calibrated
 rate.
-
-````
-suppress_hashrate_for_seconds: 10
-````
-
-Suppress displaying the hashrate for this many seconds after an algorithm starts up.
 
 ````
 algo_warmup_period_mins: 2
@@ -587,14 +692,16 @@ display.
 
 ````
 calibration:
-  initial_warmup_time_mins: 5
-  initial_sample_time_mins: 10
-  acceptable_loss_percent: 1
+  hashrate_stabilisation_timeout_mins: 10
+  hashrate_stabilisation_tolerance: 0.5
+  hashrate_stabilisation_consecutive_readings_required: 5
   algorithm_start_timeout: 180
   power_tuning:
     enable: true
     decrement_watts: 10
-    sample_time_mins: 5
+    acceptable_loss_percent: 1
+  update_calibration_data_over_time: true
+  calibration_update_threshold_pc: 10
 ````
 
 Settings for calibration runs. See the calibration section above.
@@ -613,15 +720,15 @@ Minotaur will ignore these GPU ids when running with --mine. You can also specif
 device classes here
 
 ````
-regulate_card_temperatures: true
-card_temperature_limit: 80
+stats:
+  enable: true
+  stats_file: /var/log/minotaur/minotaur.csv
+  algos_file: /var/log/minotaur/algorithms.csv
+  max_size_mb: 10
+  max_file_count: 7
 ````
 
-If missing or set to true Minotaur will throttle the power limit in order to try
-to keep the card at the limit temperature. This only occurs during mining, NOT
-during calibration. Also there is no guarantee that it will succeed because it
-really depends on the thermal situation the card is in. Minotaur can only
-throttle the power down to the minimum power limit of the device.
+Settings for statistics collection. If enable you can execute the reports.
 
 
 ## Donate
@@ -633,7 +740,7 @@ throttle the power down to the minimum power limit of the device.
 ## Related projects
 
 - Excavataur - https://github.com/m4rkw/excavataur
-- Fanotaur - https://github.com/m4rkw/fanotaur
+- gpustatd - https://github.com/m4rkw/gpustatd
 
 
 ## Credits
