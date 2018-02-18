@@ -136,7 +136,7 @@
 14/02/2018 0.9.9.6 - ewbf support (requires a shim)
 14/02/2018 0.9.9.7 - various minor bugfixes
 15/02/2018 0.9.9.8 - various minor bugfixes
-15/02/2018 1.0 - changes:
+18/02/2018 1.0 - changes:
 - fanotaur is now gpustatd
 - gpustatd does all the nvidia device polling
 - power regulation is now done in gpustatd
@@ -148,4 +148,5 @@
 - added config param for system draw
 - added support for nicehash pool fee in profit calculation
 - added support for miningpoolhub
+18/02/2018 1.0.1 - minor bugfix
 ````
