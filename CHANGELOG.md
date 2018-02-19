@@ -156,5 +156,9 @@
 - disabled excavator for ethermine
 19/02/2018 1.0.5 - changes:
 - re-enabled excavator for ethermine
-19/02/2018 1.0.6 - disabled excavator with ethermine (not compatible)
+19/02/2018 1.0.7 - disabled excavator with ethermine (not compatible)
+19/02/2018 1.0.8 - changes:
+- switch immediately on startup if the active pool is disabled
+- fix for crash when running with disabled algos
+- added html gs output method
 ````

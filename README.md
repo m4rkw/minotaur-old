@@ -147,6 +147,12 @@ Invoke it with:
 ./minotaur --gs
 ````
 
+You can also have it write the display out as html on a 1-second interval:
+
+````
+./minotaur --html <filename>
+````
+
 ![minotaur](https://a.rkw.io/minotaur.png?t=1)
 
 # Compatibility
