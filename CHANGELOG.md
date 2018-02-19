@@ -156,4 +156,5 @@
 - disabled excavator for ethermine
 19/02/2018 1.0.5 - changes:
 - re-enabled excavator for ethermine
+19/02/2018 1.0.6 - disabled excavator with ethermine (not compatible)
 ````
