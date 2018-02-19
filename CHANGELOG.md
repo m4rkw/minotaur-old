@@ -151,4 +151,9 @@
 18/02/2018 1.0.1 - minor bugfix
 18/02/2018 1.0.2 - added support for overriding max power limit in config
 19/02/2018 1.0.3 - minor bugfix
+19/02/2018 1.0.4 - changes:
+- fix for algo disabling
+- disabled excavator for ethermine
+19/02/2018 1.0.5 - changes:
+- re-enabled excavator for ethermine
 ````
