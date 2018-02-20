@@ -161,4 +161,6 @@
 - switch immediately on startup if the active pool is disabled
 - fix for crash when running with disabled algos
 - added html gs output method
+20/02/2018 1.0.9 - minor bugfix
+20/02/2018 1.0.10 - fixed --algos method
 ````
