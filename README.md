@@ -32,6 +32,7 @@ ethermine.org! You'll need the latest version of Excavataur for this to work.
 
 - Added support for zclmine.pro and miningpoolhub
 
+- 20/02/2018 - Minotaur now has generic support for any pool you want to use!
 
 ## Support channel
 
@@ -54,11 +55,8 @@ future.
 Pools supported:
 
 - nicehash
-- ethermine (ethereum only)
-- flypool (ZEC only)
-- monero ocean (XMR only)
-- zclmine.pro (zclassic)
 - miningpoolhub
+- any single-coin pool you want to use
 
 For now Minotaur is closed-source and donation-supported, as I'd quite like to
 have time to really focus on making it the best miner-management system there

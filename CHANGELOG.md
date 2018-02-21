@@ -163,4 +163,5 @@
 - added html gs output method
 20/02/2018 1.0.9 - minor bugfix
 20/02/2018 1.0.10 - fixed --algos method
+20/02/2018 1.0.11 - added generic pool support
 ````
