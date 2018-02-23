@@ -164,4 +164,13 @@
 20/02/2018 1.0.9 - minor bugfix
 20/02/2018 1.0.10 - fixed --algos method
 20/02/2018 1.0.11 - added generic pool support
+21/02/2018 1.1 - changes:
+- set up new donation mechanism
+- fix for race condition crash
+- don't wait for a hashrate before stopping the old worker
+- additionally process /etc/minotaur.conf.d/*.conf
+- track time since last change
+- apply OC profiles and power limits on HUP
+- log device and total watts to csv
+- blank fields from gpu_t onwards for secondary algos on a device
 ````
