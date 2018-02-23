@@ -173,4 +173,5 @@
 - apply OC profiles and power limits on HUP
 - log device and total watts to csv
 - blank fields from gpu_t onwards for secondary algos on a device
+21/02/2018 1.1.1 - fix for incorrect power logs
 ````
